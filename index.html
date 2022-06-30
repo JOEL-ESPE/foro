@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1><center>Ajax xmlHttpSolicitud simple</center></h1>
+<p><b>NOMBRE: </b>Joel Castillo</p>
+<p><b>NRC: </b>8496</p>
+<p><b>TEMA: </b>Foro Parcial 2</p>
+
+<p><center><b>NOMBRE: </b><a id="nombre"></a></center></p>
+<p><center><b>APELLIDO: </b><a id="apellido"></a></center></p>
+
+<center><button type="button" onclick="leerDatos()">CARGAR DATOS</button></center>
+
+<script>
+  var usuarios= new Array();
+  class Usuario{
+    constructor(nombre, apellido){
+      this.nombre = nombre;
+      this.apellido = apellido;
+      }
+  };
+  leerDatos();
+  var n1,n2;
+  function leerDatos(){
+    var datos= new Array();
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+      if (this.readyState ==4  && this.status==200){
+        datos=this.responseText.split("-"); 
+        var j=0;
+        n1=datos[j];
+        n2=datos[j+1];   
+      } 
+    }
+    var archivo= "archivo.txt";
+    xhttp.open("GET", archivo, true);
+    xhttp.send(); 
+    document.getElementById("nombre").innerHTML = n1;  
+    document.getElementById("apellido").innerHTML = n2;
+  }
+</script>
+
+</body>
+</html>
